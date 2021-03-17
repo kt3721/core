@@ -37,7 +37,9 @@ import {
   onRenderTracked,
   onBeforeUnmount,
   onUnmounted,
+  onBeforeActivate,
   onActivated,
+  onBeforeDeactivate,
   onDeactivated,
   onRenderTriggered,
   DebuggerHook,
@@ -448,7 +450,9 @@ interface LegacyOptions<
   mounted?(): void
   beforeUpdate?(): void
   updated?(): void
+  beforeActivate?(): void
   activated?(): void
+  beforeDeactivate?(): void
   deactivated?(): void
   /** @deprecated use `beforeUnmount` instead */
   beforeDestroy?(): void
@@ -569,7 +573,9 @@ export function applyOptions(instance: ComponentInternalInstance) {
     mounted,
     beforeUpdate,
     updated,
+    beforeActivate,
     activated,
+    beforeDeactivate,
     deactivated,
     beforeDestroy,
     beforeUnmount,
@@ -756,7 +762,9 @@ export function applyOptions(instance: ComponentInternalInstance) {
   registerLifecycleHook(onMounted, mounted)
   registerLifecycleHook(onBeforeUpdate, beforeUpdate)
   registerLifecycleHook(onUpdated, updated)
+  registerLifecycleHook(onBeforeActivate, beforeActivate)
   registerLifecycleHook(onActivated, activated)
+  registerLifecycleHook(onBeforeDeactivate, beforeDeactivate)
   registerLifecycleHook(onDeactivated, deactivated)
   registerLifecycleHook(onErrorCaptured, errorCaptured)
   registerLifecycleHook(onRenderTracked, renderTracked)
