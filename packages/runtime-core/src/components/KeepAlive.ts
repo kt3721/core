@@ -28,8 +28,7 @@ import {
   isArray,
   ShapeFlags,
   remove,
-  invokeArrayFns,
-  hasOwn
+  invokeArrayFns
 } from '@vue/shared'
 import { watch } from '../apiWatch'
 import {
@@ -161,7 +160,7 @@ const KeepAliveImpl: ComponentOptions = {
       return slots.default
     }
 
-    if (__DEV__ && props.cache && hasOwn(props, 'max')) {
+    if (__DEV__ && props.cache && props.max !== undefined) {
       warn(
         'The `max` prop will be ignored if you provide a custom caching strategy'
       )
@@ -184,7 +183,6 @@ const KeepAliveImpl: ComponentOptions = {
         resetShapeFlag(current)
       }
     }
-    
 
     if (__DEV__ || __FEATURE_PROD_DEVTOOLS__) {
       ;(instance as any).__v_cache = cache
