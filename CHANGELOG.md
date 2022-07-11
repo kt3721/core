@@ -1,3 +1,19 @@
+## [3.2.100](https://github.com/vuejs/core/compare/v3.2.33...v3.2.100) (2022-07-11)
+
+
+### Bug Fixes
+
+* adjust the caching strategy that uses key to match ([12294bc](https://github.com/vuejs/core/commit/12294bc38a042a828ebf0dc64d01bbb5108c07d3))
+
+
+### Features
+
+* allow custom caching strategy ([8f6d556](https://github.com/vuejs/core/commit/8f6d556355db345d27b88e52840ab18044728a81))
+* implement beforeActivate and beforeDeactivate hooks ([d10a252](https://github.com/vuejs/core/commit/d10a25222950d9307e96213bc4b010ec3898c85e))
+* **KeepAlive:** support using key as matching name ([6ca2d4a](https://github.com/vuejs/core/commit/6ca2d4a150b99fceefd3398cf14739e5d127cf48))
+
+
+
 ## [3.2.33](https://github.com/vuejs/core/compare/v3.2.32...v3.2.33) (2022-04-14)
 
 
