@@ -92,7 +92,7 @@ async function main() {
   // build all packages with types
   step('\nBuilding all packages...')
   if (!skipBuild && !isDryRun) {
-    await run('pnpm', ['run', 'build', '--', '--release'])
+    await run('pnpm', ['run', 'build', '--release'])
     // test generated dts files
     step('\nVerifying type declarations...')
     await run('pnpm', ['run', 'test-dts-only'])
@@ -123,12 +123,6 @@ async function main() {
     await publishPackage(pkg, targetVersion, runIfNotDry)
   }
 
-  // push to GitHub
-  step('\nPushing to GitHub...')
-  await runIfNotDry('git', ['tag', `v${targetVersion}`])
-  await runIfNotDry('git', ['push', 'origin', `refs/tags/v${targetVersion}`])
-  await runIfNotDry('git', ['push'])
-
   if (isDryRun) {
     console.log(`\nDry run finished - run git diff to see package changes.`)
   }
@@ -142,7 +136,8 @@ async function main() {
       )
     )
   }
-  console.log()
+  
+  console.log('complete')
 }
 
 function updateVersions(version) {
@@ -213,8 +208,8 @@ async function publishPackage(pkgName, version, runIfNotDry) {
         '--new-version',
         version,
         ...(releaseTag ? ['--tag', releaseTag] : []),
-        '--access',
-        'public'
+        '--registry',
+        'http://10.74.20.125:8081/repository/npm_releases/'
       ],
       {
         cwd: pkgRoot,
